@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0072)http://www-inst.eecs.berkeley.edu/~cs61a/fa13/lab/lab08/lab8-scheme.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+
+<link rel="stylesheet" type="text/css" href="./5lab8-scheme_files/codemirror.css">
+<link rel="stylesheet" type="text/css" href="./5lab8-scheme_files/isicp.css">
+<link rel="stylesheet" type="text/css" href="./5lab8-scheme_files/theme.css">
+
+<script async="" src="./5lab8-scheme_files/analytics.js"></script><script src="./5lab8-scheme_files/helper.js"></script><style type="text/css"></style>
+<script src="./5lab8-scheme_files/codemirror.js"></script>
+<script src="./5lab8-scheme_files/scheme-mode.js"></script>
+<script src="./5lab8-scheme_files/jquery.min.js"></script>
+<script src="./5lab8-scheme_files/coding.js"> </script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43609447-3', 'berkeley.edu');
+  ga('send', 'pageview');
+</script>
+</head>
+
+<body>
+<h2> Lab 8 - Scheme </h2>
+
+<hr>
+
+<p>In this part of the lab, we will be learning Scheme. We have provided a
+Javascript based scheme interpreter that will let you interpret Scheme right in
+your browser! You can type code into the boxes, and to run the interpreter,
+either click outside, or press <tt>Ctrl-Enter</tt>. Give it a try below:</p>
+<div id="scheme-example"><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.1875px; left: 5.1875px;"><textarea wrap="off" autocorrect="off" autocapitalize="off" style="position: absolute; padding: 0px; width: 1px; height: 1em;"></textarea></div><div class="CodeMirror-scrollbar" style="z-index: -2; visibility: hidden; display: none;"><div class="CodeMirror-scrollbar-inner"></div></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative;"><div style="position: relative; top: 0px;"><div class="CodeMirror-gutter" style="display: none;"><div class="CodeMirror-gutter-text"></div></div><div class="CodeMirror-lines"><div style="position: relative; z-index: 0; outline: none; min-width: 57px;"><div style="position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden;"></div><pre class="CodeMirror-cursor" style="top: 0px; left: 0px;">&nbsp;</pre><pre class="CodeMirror-cursor" style="visibility: hidden; left: 56px;">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-bracket">(</span><span class="cm-variable">+</span> <span class="cm-number">1</span> <span class="cm-number">2</span><span class="cm-bracket">)</span></pre></div></div></div></div></div></div></div></div><div id="scheme-example-output" class="output"><span class="output_return_value">3<br> </span></div>
+<script> prompt("scheme-example"); </script>
+
+<p>If you like the in-line interpreter, check out
+the <a href="http://xuanji.appspot.com/isicp/">Interactive SICP</a>, where you
+can interpret Scheme expressions while you are reading the book.</p>
+
+<h4>Question 1: Abstraction with procedures</h4>
+
+<p>Fill in the definition for the procedure <tt>accumulate</tt>, as you have
+been asked to do
+in <a href="http://www-inst.eecs.berkeley.edu/~cs61a/fa13/hw/hw2.html">Homework
+2</a>:</p>
+
+<p> Accumulate takes in: </p>
+<ol>
+  <li>
+    <p><tt>combiner</tt>: A function of two arguments</p>
+  </li>
+  <li>
+    <p><tt>start</tt>: A number to start combining with</p>
+  </li>
+  <li>
+    <p><tt>n</tt>: The number of terms to combine</p>
+  </li>
+  <li>
+    <p><tt>term</tt>: A function of one argument that computes the n-th term of the
+sequence.</p>
+  </li>
+</ol>
+
+<p>And returns the result of combining the first <tt>n</tt> terms of the sequence.</p>
+
+<div id="accumulate"><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.1875px; left: 5.1875px;"><textarea wrap="off" autocorrect="off" autocapitalize="off" style="position: absolute; padding: 0px; width: 1px; height: 1em;"></textarea></div><div class="CodeMirror-scrollbar" style="z-index: -2; visibility: hidden; display: none;"><div class="CodeMirror-scrollbar-inner"></div></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative;"><div style="position: relative; top: 0px;"><div class="CodeMirror-gutter" style="display: none;"><div class="CodeMirror-gutter-text"></div></div><div class="CodeMirror-lines"><div style="position: relative; z-index: 0; outline: none; min-width: 513px;"><div style="position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden;"></div><pre class="CodeMirror-cursor" style="top: 0px; left: 0px;">&nbsp;</pre><pre class="CodeMirror-cursor" style="visibility: hidden; left: 512px;">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-bracket">(</span><span class="cm-builtin">define</span> <span class="cm-bracket">(</span><span class="cm-variable">accumulate</span> <span class="cm-variable">combiner</span> <span class="cm-variable">start</span> <span class="cm-variable">n</span> <span class="cm-variable">term</span><span class="cm-bracket">)</span></pre><pre>  <span class="cm-bracket">(</span><span class="cm-builtin">if</span> <span class="cm-bracket">(</span><span class="cm-variable">=</span> <span class="cm-variable">n</span> <span class="cm-number">0</span><span class="cm-bracket">)</span></pre><pre>      <span class="cm-variable">start</span></pre><pre>      <span class="cm-atom">'</span><span class="cm-variable">Your-Code-Here</span></pre><pre>      <span class="cm-bracket">))</span></pre><pre> </pre><pre><span class="cm-bracket">(</span><span class="cm-builtin">define</span> <span class="cm-bracket">(</span><span class="cm-variable">square</span> <span class="cm-variable">x</span><span class="cm-bracket">)</span> <span class="cm-bracket">(</span><span class="cm-variable">*</span> <span class="cm-variable">x</span> <span class="cm-variable">x</span><span class="cm-bracket">))</span></pre><pre> </pre><pre><span class="cm-bracket">(</span><span class="cm-variable">accumulate</span> <span class="cm-variable">+</span> <span class="cm-number">0</span> <span class="cm-number">4</span> <span class="cm-variable">square</span><span class="cm-bracket">)</span> <span class="cm-comment">;; Computes 1^2 + 2^2 + 3^2 + 4^2 = 30</span></pre></div></div></div></div></div></div></div></div><div id="accumulate-output" class="output"><span class="output_return_value">Your-Code-Here<br> </span></div>
+<br>
+<button id="toggleButton0">Toggle Solution</button>
+
+<script>
+  prompt("accumulate");
+  $("#toggleButton0").click(function () {
+    var e = editorOf["accumulate"];
+    e.setValue("(define (accumulate combiner start n term)\n  (if (= n 0)\n      start\n      (combiner (accumulate combiner\n                            start\n                            (- n 1)\n                            term)\n                (term n))))\n\n(define (square x) (* x x))\n\n(accumulate + 0 4 square) ;; Computes 1^2 + 2^2 + 3^2 + 4^2 = 30");
+    e.getOption("onBlur")()
+  })
+</script>
+
+<h4>Question 2: Abstraction with data</h4>
+
+<p>Remember the tree data structure that we built in discussion.</p>
+
+<div id="make-btree"><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.1875px; left: 5.1875px;"><textarea wrap="off" autocorrect="off" autocapitalize="off" style="position: absolute; padding: 0px; width: 1px; height: 1em;"></textarea></div><div class="CodeMirror-scrollbar" style="z-index: -2; visibility: hidden; display: none;"><div class="CodeMirror-scrollbar-inner"></div></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative;"><div style="position: relative; top: 0px;"><div class="CodeMirror-gutter" style="display: none;"><div class="CodeMirror-gutter-text"></div></div><div class="CodeMirror-lines"><div style="position: relative; z-index: 0; outline: none; min-width: 337px;"><div style="position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden;"></div><pre class="CodeMirror-cursor" style="top: 0px; left: 0px;">&nbsp;</pre><pre class="CodeMirror-cursor" style="visibility: hidden; left: 336px;">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-bracket">(</span><span class="cm-builtin">define</span> <span class="cm-bracket">(</span><span class="cm-variable">make-btree</span> <span class="cm-variable">entry</span> <span class="cm-variable">left</span> <span class="cm-variable">right</span><span class="cm-bracket">)</span></pre><pre>  <span class="cm-bracket">(</span><span class="cm-builtin">cons</span> <span class="cm-variable">entry</span> <span class="cm-bracket">(</span><span class="cm-builtin">cons</span> <span class="cm-variable">left</span> <span class="cm-variable">right</span><span class="cm-bracket">)))</span></pre><pre> </pre><pre><span class="cm-bracket">(</span><span class="cm-builtin">define</span> <span class="cm-variable">test-tree</span></pre><pre>  <span class="cm-bracket">(</span><span class="cm-variable">make-btree</span> <span class="cm-number">2</span></pre><pre>              <span class="cm-bracket">(</span><span class="cm-variable">make-btree</span> <span class="cm-number">1</span></pre><pre>                          <span class="cm-variable">nil</span></pre><pre>                          <span class="cm-variable">nil</span><span class="cm-bracket">)</span></pre><pre>              <span class="cm-bracket">(</span><span class="cm-variable">make-btree</span> <span class="cm-number">4</span></pre><pre>                          <span class="cm-bracket">(</span><span class="cm-variable">make-btree</span> <span class="cm-number">3</span></pre><pre>                                      <span class="cm-variable">nil</span></pre><pre>                                      <span class="cm-variable">nil</span><span class="cm-bracket">)</span></pre><pre>                          <span class="cm-variable">nil</span><span class="cm-bracket">)))</span></pre><pre><span class="cm-comment">;; Represents:</span></pre><pre><span class="cm-comment">;     2</span></pre><pre><span class="cm-comment">;    / \</span></pre><pre><span class="cm-comment">;   1   4</span></pre><pre><span class="cm-comment">;      /</span></pre><pre><span class="cm-comment">;     3</span></pre><pre> </pre><pre><span class="cm-bracket">(</span><span class="cm-builtin">define</span> <span class="cm-bracket">(</span><span class="cm-variable">entry</span> <span class="cm-variable">tree</span><span class="cm-bracket">)</span></pre><pre>  <span class="cm-bracket">(</span><span class="cm-builtin">car</span> <span class="cm-variable">tree</span><span class="cm-bracket">))</span></pre><pre> </pre><pre><span class="cm-bracket">(</span><span class="cm-builtin">define</span> <span class="cm-bracket">(</span><span class="cm-variable">left</span> <span class="cm-variable">tree</span><span class="cm-bracket">)</span></pre><pre>  <span class="cm-bracket">(</span><span class="cm-builtin">car</span> <span class="cm-bracket">(</span><span class="cm-builtin">cdr</span> <span class="cm-variable">tree</span><span class="cm-bracket">)))</span></pre><pre> </pre><pre><span class="cm-bracket">(</span><span class="cm-builtin">define</span> <span class="cm-bracket">(</span><span class="cm-variable">right</span> <span class="cm-variable">tree</span><span class="cm-bracket">)</span></pre><pre>  <span class="cm-bracket">(</span><span class="cm-builtin">cdr</span> <span class="cm-bracket">(</span><span class="cm-builtin">cdr</span> <span class="cm-variable">tree</span><span class="cm-bracket">)))</span></pre></div></div></div></div></div></div></div></div><div id="make-btree-output" class="output"></div>
+<script> prompt("make-btree"); </script>
+
+
+<div id="test-btree"><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.1875px; left: 5.1875px;"><textarea wrap="off" autocorrect="off" autocapitalize="off" style="position: absolute; padding: 0px; width: 1px; height: 1em;"></textarea></div><div class="CodeMirror-scrollbar" style="z-index: -2; visibility: hidden; display: none;"><div class="CodeMirror-scrollbar-inner"></div></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative;"><div style="position: relative; top: 0px;"><div class="CodeMirror-gutter" style="display: none;"><div class="CodeMirror-gutter-text"></div></div><div class="CodeMirror-lines"><div style="position: relative; z-index: 0; outline: none; min-width: 201px;"><div style="position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden;"></div><pre class="CodeMirror-cursor" style="top: 0px; left: 0px;">&nbsp;</pre><pre class="CodeMirror-cursor" style="visibility: hidden; left: 200px;">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-bracket">(</span><span class="cm-variable">entry</span> <span class="cm-variable">test-tree</span><span class="cm-bracket">)</span></pre><pre><span class="cm-bracket">(</span><span class="cm-variable">entry</span> <span class="cm-bracket">(</span><span class="cm-variable">left</span> <span class="cm-variable">test-tree</span><span class="cm-bracket">))</span></pre><pre><span class="cm-bracket">(</span><span class="cm-variable">entry</span> <span class="cm-bracket">(</span><span class="cm-variable">right</span> <span class="cm-variable">test-tree</span><span class="cm-bracket">))</span></pre></div></div></div></div></div></div></div></div><div id="test-btree-output" class="output"><span class="output_return_value">2<br> </span><span class="output_return_value">1<br> </span><span class="output_return_value">4<br> </span></div>
+<script>
+  prompt("test-btree");
+  addDep("test-btree", ["make-btree"]);
+</script>
+
+
+<p>Write a procedure <tt>num-leaves</tt>, that counts the number of leaves in a
+tree.</p>
+
+<div id="numLeaves"><div class="CodeMirror"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.1875px; left: 5.1875px;"><textarea wrap="off" autocorrect="off" autocapitalize="off" style="position: absolute; padding: 0px; width: 1px; height: 1em;"></textarea></div><div class="CodeMirror-scrollbar" style="z-index: -2; visibility: hidden; display: none;"><div class="CodeMirror-scrollbar-inner"></div></div><div class="CodeMirror-scroll cm-s-default" tabindex="-1"><div style="position: relative;"><div style="position: relative; top: 0px;"><div class="CodeMirror-gutter" style="display: none;"><div class="CodeMirror-gutter-text"></div></div><div class="CodeMirror-lines"><div style="position: relative; z-index: 0; outline: none; min-width: 193px;"><div style="position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden;"></div><pre class="CodeMirror-cursor" style="top: 0px; left: 0px;">&nbsp;</pre><pre class="CodeMirror-cursor" style="visibility: hidden; left: 192px;">&nbsp;</pre><div style="position: relative; z-index: -1; display: none;"></div><div style=""><pre><span class="cm-bracket">(</span><span class="cm-builtin">define</span> <span class="cm-bracket">(</span><span class="cm-variable">numLeaves</span> <span class="cm-variable">tree</span><span class="cm-bracket">)</span></pre><pre>  <span class="cm-atom">'</span><span class="cm-variable">Your-Code-Here</span></pre><pre>  <span class="cm-bracket">)</span></pre><pre> </pre><pre><span class="cm-bracket">(</span><span class="cm-variable">numLeaves</span> <span class="cm-variable">test-tree</span><span class="cm-bracket">)</span></pre><pre><span class="cm-comment">; Should return 2</span></pre></div></div></div></div></div></div></div></div><div id="numLeaves-output" class="output"><span class="output_return_value">Your-Code-Here<br> </span></div>
+<br>
+<button id="toggleButton1">Toggle Solution</button>
+<script>
+  prompt("numLeaves");
+  addDep("numLeaves", ["make-btree"]);
+  $("#toggleButton1").click(function () {
+    var e = editorOf["numLeaves"];
+    e.setValue(
+"(define (num-leaves tree)\n  (cond ((null? tree) 0)\n        ((and (null? (left tree))\n              (null? (right tree)))\n         1)\n        (else (+ (num-leaves (left tree))\n                 (num-leaves (right tree))))))\n\n(num-leaves test-tree)\n; Should return 2");
+    e.getOption("onBlur")()
+  })
+</script>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+
+<script>
+
+var todo = Object.keys(editorOf);
+
+(function proc() {
+  if (todo.length == 0) {
+    return;
+  }
+  try {
+    var first = todo.shift();
+    editorOf[first].getOption("onBlur")().then(proc);
+  } catch (err) {
+    proc();
+  }
+})();
+
+
+</script>
+
+
+
+</body></html>

@@ -1,0 +1,49 @@
+(define (filter lst pred)
+(cond  ((null? lst) st)
+       ((pred (car lst)) (cons (car lst) (filter (cdr lst) pred)))
+       (else (filter (cdr lst) pred))))
+
+
+  When list is size 1
+
+  When list is size 0
+
+
+(define (count_palindromes lst)
+  (cond ((null? lst) 0)
+        ((and (car lst) (null? (cdr lst))) 1)
+        (else (= lst (lst_slice lst 0 -1)) + (palindrome_sublists())
+
+
+  )
+
+  
+
+  )
+
+  return 0
+if len(lst) == 1:
+return 1
+int(lst[::-1] == lst) + palindrome_sublists(lst[1:]) +
+palindrome_sublists(lst[:-1]) - palindrome_sublists(lst[1:-1])
+Give yourself, and your neighbors a high five, you’ve solved a pretty difficult problem!
+1.4 Counting Palindromes in Scheme
+1. All right now lets do the same problem in Scheme. You may be sad because
+Scheme doesn’t have list slicing, so for the purposes of this problem lets assume
+you have a lst slice method that takes three arguments ,a scheme list, and two
+indices and returns that slice of the list (just like in python). If you don’t know
+how something works in Scheme, just guess! We can iron out the syntax later,
+lets just get our problem in Scheme land.
+2. Now write lst slice so the above function can run.
+
+This is kind of confusing lets walk through it slowly. If I want to count ALL the
+palindromes in all sublists, I’d need to look at some smaller lists. If I count all the
+palindromes in the sublist lst[1:] (I know this works because I’m taking the recursive
+leap of faith), I have counted all the possible palindromes that don’t include the first
+element. But thats not okay! So I count all palindromes in sublist lst[:-1], now this
+has all the palindromes that don’t include the last element. So we’ve covered all the
+cases right? Wrong! We’ve double counted all the palindromes in the lst[1:-1] (the
+middle part of the list). So we need to subtract that part out of our answer.
+So gluing all our code together our final solution looks like:
+def count_palindromes(lst):
+if len(lst) == 0:
